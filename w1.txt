@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Department Information Page" />
+  <meta name="author" content="Our Department" />
+  <title>Our Department</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #0044cc, #00b4d8);
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    nav {
+      text-align: center;
+      padding: 10px;
+      background-color: #333;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00b4d8;
+    }
+
+    section {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #0044cc;
+      color: white;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin-top: 20px;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #0044cc;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    blockquote {
+      font-style: italic;
+      color: #555;
+      border-left: 4px solid #00b4d8;
+      padding-left: 10px;
+      margin: 20px 0;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      color: white;
+      background-color: #0044cc;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #00b4d8;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to Our Department</h1>
+    <p class="highlight">Empowering Knowledge, Driving Innovation</p>
+  </header>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#facilities">Facilities</a>
+    <a href="#faculty">Faculty</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <section id="about">
+    <h2>About Our Department</h2>
+    <p>
+      Our department is committed to excellence in <span class="highlight">teaching,
+        research, and community service</span>. We
+      aim to foster creativity, critical thinking, and lifelong learning among our students.
+    </p>
+    <hr />
+    <blockquote>
+      "Education is the most powerful weapon which you can use to change the world." -
+      Nelson Mandela
+    </blockquote>
+  </section>
+  <section id="facilities">
+    <h2>Facilities</h2>
+    <p>We offer state-of-the-art facilities, including:</p>
+    <ul>
+      <li>Modern laboratories equipped with the latest technology</li>
+      <li>A comprehensive library with thousands of resources</li>
+      <li>Collaborative workspaces and research centers</li>
+      <li>Well-equipped lecture halls with audio-visual aids</li>
+    </ul>
+    <img src="facilities.jpg" alt="Department Facilities" />
+  </section>
+  <section id="faculty">
+    <h2>Meet Our Faculty</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Specialization</th>
+      </tr>
+      <tr>
+        <td>Mrs.Vidya Rani</td>
+        <td>Professor</td>
+        <td>Artificial Intelligence</td>
+      </tr>
+      <tr>
+        <td>Mr. Pramod</td>
+        <td>Professor</td>
+        <td>Data Science</td>
+      </tr>
+      <tr>
+        <td>Ms. Spoorthi</td>
+        <td>Professor</td>
+        <td>Cybersecurity</td>
+      </tr>
+    </table>
+  </section>
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>
+      <strong>Address:</strong> 123 Academic Lane, Knowledge City, Learning State,
+      456789<br />
+      <strong>Email:</strong> info@ourdepartment.edu<br />
+      <strong>Phone:</strong> +1-234-567-8900
+    </p>
+    <p>
+      Visit our <a href="contact.html">Contact Page</a> for more details.
+    </p>
+    <a href="mailto:info@ourdepartment.edu" class="button">Email Us</a>
+  </section>
+  <footer>
+    &copy; 2025 Our Department. All Rights Reserved.
+  </footer>
+</body>
+
+</html>
