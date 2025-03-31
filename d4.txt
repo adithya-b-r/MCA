@@ -1,0 +1,125 @@
+create table const(
+  conid int primary key,
+  conname varchar(255),
+  constate varchar(255),
+  noofvoter int
+);
+
+insert into const(conid, conname, constate, noofvoter)values
+(1, 'Constituency A', 'karnataka', 500000),
+(2, 'Constituency B', 'goa', 450000),
+(3, 'Constituency C', 'kolkata', 600000);
+
+create table cand(
+  canid int primary key,
+  canname varchar(255),
+  phno varchar(255),
+  age int,
+  state varchar(255),
+  pid int references party(pid)
+);
+
+insert into cand(canid, canname, phno, age, state, pid)values
+(101, 'Candidate A1', '123-456-7890', 45, 'Goa', 1),
+(102, 'Candidate B1', '234-567-8901', 38, 'Karnataka', 2),
+(103, 'Candidate C1', '345-678-9012', 50, 'Goa', 3);
+
+create table party(
+  pid int primary key,
+  pname varchar(255),
+  psymbol varchar(255)
+);
+
+insert into party(pid, pname, psymbol)values
+(1, 'BJP', 'Lotus'),
+(2, 'Aam Admi', 'Broomstick'),
+(3, 'Congress', 'hand');
+
+create table voter(
+  vid int primary key,
+  conid int references const(conid),
+  vname varchar(255),
+  age int,
+  address varchar(255),
+  canid int references cand(canid)
+);
+
+insert into voter(vid, vname, age, address, conid, canid)values
+(201, 'Voter A', 30, 'Address A', 1, 101),
+(202, 'Voter B', 40, 'Address B', 2, 102),
+(203, 'Voter C', 25, 'Address C', 3, NULL); 
+
+create table contest(
+  conid int references const(conid),
+  canid int references cand(canid)
+);
+
+insert into contest(conid, canid)values
+(1, 101),
+(2, 102),
+(3, 103);
+
+-- 1.
+select * 
+from cand ca
+join contest co on ca.canid=co.canid
+join const con on co.conid=con.conid
+group by ca.state
+having count(con.constate)>1;
+
+-- 2.
+select constate from const group by constate order by count(constate) desc limit 1;
+
+-- 3.
+DELIMITER //
+
+CREATE PROCEDURE insertvoter(
+    IN vid INT, 
+    IN vname VARCHAR(255), 
+    IN age INT, 
+    IN address VARCHAR(255), 
+    IN conid INT, 
+    IN canid INT
+)
+BEGIN
+    IF age >= 18 THEN
+        INSERT INTO voter(vid, vname, age, address, conid, canid) 
+        VALUES (vid, vname, age, address, conid, canid);
+    ELSE
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'Not an eligible voter';
+    END IF;
+END //
+
+DELIMITER;
+
+CALL insertvoter(204, 'Voter D', 28, 'Address D', 1, 101);
+
+-- *Note: use // after calling insertvoter.
+
+-- 4.
+delimiter //
+
+create procedure numofvoter(in cname varchar(255))
+begin
+  select noofvoter from const
+  where conname = cname;
+end//
+
+delimiter;
+
+-- 5.
+DELIMITER $$
+
+CREATE TRIGGER UpdateVoterCount 
+AFTER INSERT ON voter
+FOR EACH ROW
+BEGIN
+    UPDATE const
+    SET noofvoter = noofvoter + 1
+    WHERE conid = NEW.conid;
+END $$
+
+DELIMITER;
+
+-- *Note: If it still asks for a newline, use $$ or //.
