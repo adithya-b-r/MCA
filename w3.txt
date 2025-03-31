@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Program 2</title>
+<style>
+body {
+ background-color: #9999c3;
+}
+div {
+ width: 300px;
+ height: 150px;
+ padding: 50px;
+ border-radius: 15px;
+ border: 2px solid black;
+ font-size: 20px;
+ transition: transform 0.5s, z-index 0s;
+ margin: 0 auto;
+ position: absolute;
+}
+div:hover {
+ transform: scale(1.5);
+}
+h2 {
+ color: #9cc3ff;
+}
+#one {
+ top: 100px;
+ left: 300px;
+ background-color: #035b63;
+ color: white;
+ z-index: 1;
+}
+#two {
+ top: 200px;
+ left: 400px;
+ background-color: #a3003e;
+ color: white;
+ z-index: 1;
+}
+#three {
+ top: 300px;
+ left: 500px;
+ background-color: #ad7600;
+ color: white;
+ z-index: 1;
+}
+</style>
+</head>
+<body>
+<script>
+var originalZIndexes = {};
+function Moveit(Totop) {
+ var element = document.getElementById(Totop);
+ if (!originalZIndexes[Totop]) {
+ originalZIndexes[Totop] = element.style.zIndex || "1";
+ }
+ element.style.zIndex = "10";
+}
+function ResetPosition(Totop) {
+ var element = document.getElementById(Totop);
+ element.style.zIndex = originalZIndexes[Totop];
+}
+</script>
+<div id="one" onmouseover="Moveit('one')" onmouseout="ResetPosition('one')">
+<h2>LAYER-1</h2>
+<h4>Places In Chikmagalur</h4>
+ 1. Mullayangiri Hill<br>
+ 2. Buttermilk Falls
+</div>
+<div id="two" onmouseover="Moveit('two')" onmouseout="ResetPosition('two')">
+<h2>LAYER-2</h2>
+ <h4>Places In Shivamogga</h4>
+ 1. Jog Falls, Sagara<br>
+ 2. Amruthirtha Araga
+</div>
+<div id="three" onmouseover="Moveit('three')" onmouseout="ResetPosition('three')">
+<h2>LAYER-3</h2>
+ <h4>Places In Mysore</h4>
+ 1. Mysore Palace<br>
+ 2. Karanji Lake
+</div>
+</body>
+</html>
