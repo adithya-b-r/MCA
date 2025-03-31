@@ -1,1 +1,45 @@
+create table student(
+  usn varchar(25) primary key,
+  name varchar(50),
+  dob date,
+  branch varchar(30),
+  m1 int,
+  m2 int,
+  m3 int
+);
+
+insert into student(usn, name, dob, branch, m1, m2, m3)values
+("USN1", "Student 1", "2003-01-24", "MBA", 87, 92, 83),
+("USN2", "Student 2", "2004-02-18", "MCA", 84, 73, 67),
+("USN3", "Student 3", "2005-09-09", "EC", 90, 80, 79),
+("USN4", "Amar", "2003-11-28", "MCA", 96, 100, 93);
+("1001", "Ram", "2003-11-28", "MCA", 96, 100, 93);
+
+-- 1.
+alter table students add column total float;
+update students set total=(m1+m2+m3);
+
+-- To change datatype of a column
+alter table students modify column total int(5);
+
+-- 2.
+alter table students add column gpa float(5);
+update students set gpa=total/3;
+
+-- 3.
+select * from students where dob like "2003%";
+
+-- 4.
+select * from students where branch like "MCA";
+
+-- 5.
+select * from students where gpa=(select max(gpa) from students);
+select * from students order by gpa desc limit 1;
+
+-- 6.
+select * from students where name like "s%";
+
+-- 7.
+ select * from students where name like "%ar";
+
 
