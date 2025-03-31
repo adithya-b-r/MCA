@@ -1,0 +1,117 @@
+create table branch(
+  branchid int primary key,
+  branchname varchar(50),
+  hod varchar(50)
+);
+
+insert into branch(branchid, branchname, hod)values
+(101, "MCA", "Vidya"),
+(102, "MBA", "Sandhya"),
+(103, "EC", "Arun");
+
+create table student(
+  usn varchar(20) primary key,
+  sname varchar(50),
+  address varchar(50), 
+  branchid int references branch(branchid),
+  sem int
+);
+
+insert into student()values
+("U001", "Adithya", "Mangalore", 101, 1),
+("U002", "John", "Mysore", 101, 1),
+("U003", "Aaron", "Udupi", 101, 2),
+("U004", "Doe", "Bangalore", 101, 2),
+("U005", "Sam", "Mysore", 101, 2);
+
+create table author(
+  authorid int primary key,
+  authorname varchar(255),
+  country varchar(255),
+  age int
+);
+
+insert into author()values
+(201, "Author1", "India", 34),
+(202, "Author2", "USA", 26),
+(203, "Author3", "China", 54),
+(204, "Author4", "India", 65),
+(205, "Author5", "Japan", 32);
+
+create table book(
+  bookid int primary key,
+  bookname varchar(255),
+  authorid int references author(authorid),
+  publisher varchar(255),
+  branchid int references branch(branchid)
+);
+
+insert into book(bookid, bookname, authorid, publisher, branchid)values
+(301, "Book1", 201, "Publisher1", 101),
+(302, "Book2", 201, "Publisher1", 101),
+(303, "Book3", 202, "Publisher2", 101),
+(304, "Book4", 202, "Publisher2", 101),
+(305, "Book5", 203, "Publisher3", 101);
+
+create table borrow(
+  usn varchar(20) primary key,
+  bookid int references book(bookid),
+  borrowed_date date
+);
+
+insert into borrow(usn, bookid, borrowed_date)values
+("U001", 301, "2025-03-15"),
+("U001", 302, "2025-03-20"),
+("U001", 303, "2025-03-05"),
+("U002", 301, "2025-03-02"),
+("U004", 304, "2025-02-25"),
+("U005", 302, "2025-02-25");
+
+-- 1.
+ select s.*, br.branchname from student s, branch br where s.branchid=br.branchid and s.sem=2 and br.branchname="mca";
+
+-- 2.
+select * from student where usn not in (select usn from borrow);
+
+-- 3.
+SELECT
+    s.usn, 
+    s.sname, 
+    br.branchname, 
+    bk.bookname, 
+    a.authorname, 
+    bo.borrowed_date
+FROM student s
+JOIN branch br ON s.branchid = br.branchid 
+JOIN borrow bo ON s.usn = bo.usn 
+JOIN book bk ON bk.bookid = bo.bookid 
+JOIN author a ON bk.authorid = a.authorid 
+WHERE br.branchname = 'MCA' AND s.sem = 2;
+
+-- 4.
+select count(*) as Number_Of_Books, a.authorname 
+from book bk 
+join author a on bk.authorid=a.authorid 
+group by a.authorid;
+
+-- 5.
+select * from student s 
+join borrow bo on s.usn=bo.usn 
+group by bo.usn 
+having count(bo.bookid)>2;
+
+-- 6.
+select s.* from student s 
+join borrow bo on bo.usn=s.usn
+join book bk on bo.bookid=bk.bookid
+group by s.usn having count(distinct bk.authorid)>1;
+
+-- 7.
+select bookname from book 
+order by bookname desc;
+
+-- 8.
+select s.* from student s
+join borrow bo on s.usn=bo.usn
+join book bk on bk.bookid=bo.bookid
+group by s.usn having count(distinct bk.publisher)=1;
