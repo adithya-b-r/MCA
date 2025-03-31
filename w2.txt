@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>JavaScript Problems</title>
+ <script type="text/javascript">
+ function fibonacci() {
+ var n = parseInt(prompt("Enter a number to display the first n Fibonacci numbers:"));
+ var fib = [0, 1];
+ for (var i = 2; i < n; i++) fib[i] = fib[i - 1] + fib[i - 2];
+ alert("First " + n + " Fibonacci numbers: \n" + fib.slice(0, n).join(" "));
+ }
+ function numberSquares() {
+ var n = parseInt(prompt("Enter a number to display the numbers and their squares:"));
+ var result = "Number | Square\n-------------------\n";
+ for (var i = 1; i <= n; i++) result += i + " | " + (i * i) + "\n";
+ alert(result);
+ }
+ </script>
+</head>
+<body>
+ <h2>JavaScript Problems</h2>
+ <button onclick="fibonacci()">Display Fibonacci Numbers</button>
+ <button onclick="numberSquares()">Display Numbers and Squares</button>
+</body>
+</html>
