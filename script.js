@@ -3,7 +3,7 @@ const userInput = document.getElementById("userInput"); //For Input btn.
 const sendButton = document.getElementById("sendButton"); //For send btn.
 
 const typingIndicator = document.getElementById("typingIndicator");
-const apiKey = "Paste your API key here";
+const apiKey = "AIzaSyAzDbnPNU193dkSEbrECv9o9fg_jADjqP8";
 
 // You can add additional data here or modify the prompt below.
 const customData = `
