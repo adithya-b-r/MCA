@@ -7,7 +7,7 @@ const apiKey = "AIzaSyAzDbnPNU193dkSEbrECv9o9fg_jADjqP8";
 
 // You can add additional data here or modify the prompt below.
 const customData = `
-   - You are created by Your-Name-Here, MCA Student.
+   - You are created by Sangappa and Darshan, MCA Students.
    - Institution: Shree Devi Institute of Technology (SDIT), Kenjar, Mangalore, Karnataka, India
    - Founded: 2006
    - Affiliation: Visvesvaraya Technological University (VTU), AICTE-approved
